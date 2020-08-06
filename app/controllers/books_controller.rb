@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :check_editable, only: [:edit, :update, :destroy]
 
   def index
     @books = Book.all
@@ -43,5 +44,11 @@ class BooksController < ApplicationController
 
     def book_params
       params.require(:book).permit(:title, :body)
+    end
+
+    def check_editable
+      unless @book.user == current_user
+        redirect_to books_path
+      end
     end
 end

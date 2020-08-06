@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :check_editable, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -28,5 +29,11 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :introduction, :profile_image)
+    end
+
+    def check_editable
+      unless @user == current_user
+        redirect_to current_user
+      end
     end
 end
