@@ -3,20 +3,23 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    render layout: 'mypage'
   end
 
   def show
+    @user = @book.user
+    render layout: 'user_page'
   end
 
   def edit
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
     if @book.save
       redirect_to @book, notice: 'You have creatad book successfully.'
     else
-      # render :new
+      render :edit
     end
   end
 
