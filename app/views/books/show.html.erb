@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Book detail</h2>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to '#' do %>
+          <img>
+          <br>
+          <%= @book.user.name %>
+        <% end %>
+      </td>
+      <td><%= link_to @book.title, @book %></td>
+      <td><%= @book.body %></td>
+      <% if @book.user == current_user %>
+        <td><%= link_to 'Edit', edit_book_path %></td>
+        <td><%= link_to 'Destroy', book_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
