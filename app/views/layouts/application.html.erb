@@ -4,8 +4,10 @@
   <body>
     <%= render 'shared/header' %>
     <div class="body">
-      <p id="notice"><%= notice %></p>
-      <%= yield %>
+      <div class="container">
+        <p id="notice"><%= notice %></p>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

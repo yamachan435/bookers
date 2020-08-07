@@ -7,11 +7,7 @@
       <div class="container">
         <p id="notice"><%= notice %></p>
         <div class="row">
-          <div class="col-xs-3">
-            <%= render 'users/show', user: current_user %>
-            <%= render 'books/new', book: current_user.books.build %>
-          </div>
-          <div class="col-xs-9">
+          <div class="col-md-6 col-md-offset-3">
             <%= yield %>
           </div>
         </div>

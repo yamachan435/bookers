@@ -13,8 +13,8 @@
       <td><%= link_to @book.title, @book %></td>
       <td><%= @book.body %></td>
       <% if @book.user == current_user %>
-        <td><%= link_to 'Edit', edit_book_path %></td>
-        <td><%= link_to 'Destroy', book_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_book_path, class: 'btn-sm btn-success' %></td>
+        <td><%= link_to 'Destroy', book_path, method: :delete, class: 'btn-sm btn-danger', data: { confirm: '本当に消しますか？' } %></td>
       <% end %>
     </tr>
   </tbody>

@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def edit
+    render layout: 'centering'
   end
 
   def create
@@ -20,7 +21,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'You have creatad book successfully.'
     else
-      render :edit
+      render :edit, layout: 'centering'
     end
   end
 
@@ -28,7 +29,7 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       redirect_to @book, notice: 'You have updated book successfully.'
     else
-      render :edit
+      render :edit, layout: 'centering'
     end
   end
 
