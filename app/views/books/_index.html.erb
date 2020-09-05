@@ -5,7 +5,7 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
-      <th colspan="3"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -19,7 +19,31 @@
         </td>
         <td><%= link_to book.title, book %></td>
         <td><p><%= book.body %></p></td>
+        <td>
+          <div class='fav_container'>
+            <%= favorite_link(book, current_user) %>
+            <div class="popup" style="display: none; position: absolute; z-index: 1;">
+              <%= fav_users_tag(book) %>
+            </div>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script>
+  $('.fav_container').on('mouseover', function(){
+    $(this).children('div.popup').show();
+    var target = $(this).find('div.fav-users');
+    if(!target.data('fetched')) {
+      $.get(target.data('fetch-path'), function(data){
+        target.replaceWith(data);
+      });
+    }
+  });
+
+  $('.fav_container').on('mouseout', function(){
+    $(this).children('div.popup').hide();
+  });
+</script>
