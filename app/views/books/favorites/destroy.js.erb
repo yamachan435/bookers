@@ -1,0 +1,2 @@
+$('.fav-count[data-book-id="<%= @book.id %>"]').replaceWith('<%= favorite_link(@book, current_user) %>');
+$('.fav-users[data-book-id="<%= @book.id %>"]').data('fetched', false);

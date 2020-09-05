@@ -1,0 +1,10 @@
+<%= fav_users_tag(@book) do %>
+  <ul>
+    <% @book.favoriting_users.limit(3).each do |user| %>
+      <li><%= link_to user.name, user %></li>
+    <% end %>
+  </ul>
+  <% if @book.favorites.size > 3 %>
+    <%= link_to 'More...', book_favorites_path(@book) %>
+  <% end %>
+<% end %>
