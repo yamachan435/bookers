@@ -4,17 +4,22 @@ module ApplicationHelper
       unfavoritize_link(book) : favoritize_link(book)
   end
 
-  def fav_users_tag(book)
-    tag.div(
-      class: 'fav-users',
-      data: {
-        book_id: book.id,
-        fetched: block_given?,
-        fetch_path: pickup_book_favorites_path(book),
-      }
-    ) do
-      yield if block_given?
+  module FavUsers
+    attr_accessor :book
+
+    def tag_string(name, content = nil, escape_attributes: true, **options, &block)
+      options.merge!({
+        class: [options[:class]].compact.push('fav-users'),
+        data: (options[:data] || {}).merge({
+          book_id: book.id,
+        }),
+      })
+      super
     end
+  end
+
+  def fav_users_tag(book)
+    ActionView::Helpers::TagHelper::TagBuilder.new(self).extend(FavUsers).tap { |b| b.book = book }
   end
 
   private

@@ -23,7 +23,7 @@
           <div class='fav_container'>
             <%= favorite_link(book, current_user) %>
             <div class="popup" style="display: none; position: absolute; z-index: 1;">
-              <%= fav_users_tag(book) %>
+              <%= render 'books/favorites/pickup', book: book %>
             </div>
           </div>
         </td>
@@ -35,12 +35,6 @@
 <script>
   $('.fav_container').on('mouseover', function(){
     $(this).children('div.popup').show();
-    var target = $(this).find('div.fav-users');
-    if(!target.data('fetched')) {
-      $.get(target.data('fetch-path'), function(data){
-        target.replaceWith(data);
-      });
-    }
   });
 
   $('.fav_container').on('mouseout', function(){
