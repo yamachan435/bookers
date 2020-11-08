@@ -21,7 +21,8 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'You have creatad book successfully.'
     else
-      render :edit, layout: 'centering'
+      @books = Book.all
+      render :index, layout: 'mypage'
     end
   end
 
